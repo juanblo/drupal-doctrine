@@ -1,0 +1,40 @@
+<?php
+/**
+ * Doctrine and Drupal integration module.    
+ *
+ * @file doctrine.module
+ * @author Juan Pablo Romero Bernal <juan.romero@axiacore.com> 
+ */
+
+/**
+ * Implementation of hook_init
+ * 
+ *
+ */
+
+function doctrine_init()
+{
+    global $databases;
+    global $conn;
+    $pathModule = drupal_get_path('module', 'doctrine'); 
+    require_once $pathModule . DIRECTORY_SEPARATOR 
+    . "lib" . DIRECTORY_SEPARATOR . "Doctrine" 
+    . DIRECTORY_SEPARATOR . "Doctrine.php";
+    spl_autoload_register(array('Doctrine', 'autoload'));
+
+    $dbConf = $databases['default']['default'];
+       
+    $dsn = $dbConf['driver'] . "://" . $dbConf['username'] . ":" 
+        . $dbConf['password'] . "@" . $dbConf['host'] . "/"
+        . $dbConf['database'];
+    
+    $conn = Doctrine_Manager::connection($dsn);
+    
+    $conn->setCollate('utf8_unicode_ci');
+    $conn->setCharset('utf8');
+ 
+    $pathModels = array();
+    $pathModels[] = $pathModule . DIRECTORY_SEPARATOR . "models" 
+    . DIRECTORY_SEPARATOR . "generated";
+    $pathModels[] = $pathModule . DIRECTORY_SEPARATOR . "models";
+}

@@ -1,0 +1,7 @@
+;$id$
+name = Doctrine
+description = Doctrine and Drupal integration module
+package = Optional
+core = 7.x
+files[] = doctrine.module
+php = 5.2
