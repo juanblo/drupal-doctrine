@@ -1,0 +1,29 @@
+Drupal and Doctrine integration module
+
+This module integrates Doctrine on Drupal 7 CMF. It's a initial version
+inspired by doctrine module written by Jonnathan Wage (doctrine lead
+developer) for Drupal 5.x. 
+
+Before install
+--------------
+
+Download the Doctrine libraries from http://www.doctrine-project.org and
+place it in lib/ directory under doctrine module installation directory, 
+as follows: 
+
+$ cd drupal_root_installation/sites/default/modules/doctrine 
+$ mkdir lib
+$ cd lib
+$ cp -r path_download_doctrine/Doctrine .
+
+I've tested this module in a clean installation of Drupal 7 and 
+works Ok. 
+
+
+TODO
+----
+
+* Fix relations in schema.yml
+* Documentation
+* Test
+* Integration with de devel module (???) 
